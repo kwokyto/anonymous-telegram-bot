@@ -56,14 +56,14 @@ def add_id(chat_id, matric_number):
                      "groundhog", "gull", "hawk", "hedgehog", "hen", "heron", "hippoopotamus", "hornbill", "hyena", "ibis", \
                      "porcupine", "possum", "prayingmantis", "puffin", "pygmy", "python", "quail", "rabbit", "raccoon", "rat", \
                      "rattlesnake", "raven", "reindeer", "rhino", "roadrunner", "robin", "salmon", "seal", "shark", "sheep", \
-                     "skunk", "sloth", "snake", "sparrow", "spider", "squirrel", "starfish", "stork", "swan", "tarantula", \
+                     "skunk", "sloth", "sparrow", "spider", "squirrel", "starfish", "stork", "swan", "tarantula", \
                      "tiger", "tortoise", "toucan", "turkey", "turtle", "viper", "vulture", "wallaby", "whale", "wolf", \
                      "wombat", "woodpecker", "yak", "zebra", \
                      "alligator", "alpaca", "ant", "anteater", "antelope", "armadillo", "axolotl", "baboon", "badger", "barracuda", \
                      "bat", "bear", "beaver", "beetle", "bird", "bison", "boar", "buffalo", "bulbul", "butterfly", \
                      "camel", "capybara", "cat", "chameleon", "cheetah", "chicken", "chimpanzee", "chipmunk", "cobra", "cockatoo"]
     
-    username = "usp" + username_list[random.randint(0,144)]
+    username = "usp" + username_list[random.randint(0,143)]
     partner_id = 0
     blacklist = 0
     hasher = hashlib.sha256()
@@ -123,8 +123,11 @@ def get_username(chat_id):
         logger.info("ERROR User item not found--> " + str(e))
         return False # COMPLETED AND WORKS
 
-def delete_user(matric_number):
-    # delete user entry
+def delete_user(matric_number, password):
+    # delete user entry using NUSNET ID
+    if password != "IAMTHELOVEUSPADMIN":
+        return False
+
     response = table.scan(
         FilterExpression = Attr("matric_number").eq(matric_number)
     )
@@ -165,4 +168,80 @@ def get_responses_list(chat_id, text):
         response["receiver_id"] = str(user["chat_id"])
         responses_list.append(response)
 
+    return responses_list
+
+def leave(chat_id):
+    # delete user entry using chat_id
+    response = table.scan(
+        FilterExpression = Attr("chat_id").eq(chat_id)
+    )
+    items = response["Items"]
+
+    logger.info("Items is: " + str(items))
+
+    if len(items) == 0:
+        logger.info("Chat_id not found.")
+        return False
+
+    hashid = items[0]["hashid"]
+
+    try:
+        table.delete_item(
+            Key = {"hashid": hashid}
+        )
+        logger.info("User item deleted")
+        return True
+    except Exception as e:
+        logger.info("ERROR --> " + str(e))
+        logger.info("User item not deleted")
+        return False # COMPLETED AND WORKS
+
+def debugging_mode(chat_id, text):
+    ADMIN_ID = 197107238 # change to current tester chat_id
+    debug_message = "The bot is currently under maintenance. We will inform you when the bot is back up. Thank you for your patience."
+    template = {"message": "", "receiver_id": ""}
+    responses_list = []
+
+    if chat_id != ADMIN_ID: # if someone send message during debugging
+        template["message"] = debug_message
+        template["receiver_id"] = chat_id
+        responses_list.append(template)
+        return responses_list
+
+    if text == "/broadcast_debug": # inform everyone that debugging has started
+        response = table.scan(
+            FilterExpression = ~ Attr("username").eq("")
+        )
+        items = response["Items"]
+        logger.info("Items is: " + str(items))
+
+        template["message"] = "uspadmin:\n" + debug_message
+        for user in items:
+            response = template.copy()
+            response["receiver_id"] = str(user["chat_id"])
+            responses_list.append(response)
+        logger.info("Broadcast message sent")
+        return responses_list
+
+    return True # allow only tester to continue testing code
+
+def all_ok(password):
+    if password != "IAMTHELOVEUSPADMIN":
+        return False
+
+    all_ok_message = "uspadmin:\nThe bot is back in business! Thank you for your patience."
+    template = {"message": all_ok_message, "receiver_id": ""}
+    responses_list = []
+
+    response = table.scan(
+        FilterExpression = ~ Attr("username").eq("")
+    )
+    items = response["Items"]
+    logger.info("Items is: " + str(items))
+
+    for user in items:
+        response = template.copy()
+        response["receiver_id"] = str(user["chat_id"])
+        responses_list.append(response)
+    logger.info("Broadcast message sent")
     return responses_list

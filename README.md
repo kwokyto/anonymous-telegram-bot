@@ -1,6 +1,6 @@
 # Anonymous by Love, USP
 Anonymous was created to create a safe space for USP students to hold meaningful conversations about mental health.
-This simulates a group chat where students can share experience or advice, while remaining completely anonymous
+This simulates a group chat where students can share experience or advice, while remaining completely anonymous.
 
 
 
@@ -17,10 +17,10 @@ Below are a list of available commands for users that can be used in the Telegra
 ### `/start`
 Returns a general welcome message.
 
-### `/register <matric number> <password>`
+### `/register <NUSNET ID> <password>`
 Registers the student into the Anonymous system.
-After being registered, students will receive messages that are sent.
-The password is specific to each matric number, and will be provided by Love, USP admin.
+After being registered, students can send and receive messages.
+The password is specific to each student, and will be provided by Love, USP admin.
 
 ### `/username`
 Shows the student's username.
@@ -35,10 +35,24 @@ All details of the student that are stored in the Anonymous system would also be
 ## Admin Commands
 These commands should only be made known to the admin to prevent misuse.
 
-### `/delete <matric number> <password>`
-Unregisters the user with a certain matric number.
+### `/delete <NUSNET ID> <password>`
+Unregisters the user with a certain NUSNET ID.
 This is to ensure that admins can easily remove any user that may be causing distress in the chat.
 The password used here is different from the password used in `/register`, and should only be known by the admin.
+
+
+
+## Debugging
+The following outlines the procedure for debugging.
+1. In dynamo_call.py, insert admin chat ID in debugging_mode() function.
+2. In handler.py, uncomment line to enable debugging mode.
+3. Open command line and `serverless deploy`.
+4. From now on, non-admins who send messages to the bot will receive an "under maintenance" message.
+5. Only admin can use `/broadcast_debug`, to send an "under maintenance" message to all users.
+6. Admin can continue testing the bot as a normal user while under debug mode.
+7. To flush the message queue, set `flush = True` in handler.py and `serverless deploy`.
+8. After debugging, comment line in handler.py for disable debugging mode.
+9. In Telegram, send `/allok <password>` to send an "all ok" message to all users.
 
 
 

@@ -45,22 +45,41 @@ def webhook(event, context):
     """
 
     bot = configure_telegram()
-    logger.info('Event: {}'.format(event))
+    ##logger.info('Event: {}'.format(event)) ## for privacy issues, this is commented out
 
     if event.get('httpMethod') == 'POST' and event.get('body'): 
         logger.info('Message received')
         update = telegram.Update.de_json(json.loads(event.get('body')), bot)
-        chat_id = update.message.chat.id
-        text = update.message.text
+        
+        try:
+            chat_id = update.message.chat.id
+            text = update.message.text
+        except:
+            chat_id = update.edited_message.chat.id
+            text = update.edited_message.text
 
-        lst = get_response(text, chat_id)
+        debug = False
+        #debug = debugging_mode(chat_id, text) # DEBUGGING MODE UNCOMMENT TO ENABLE DEBUGGING
+        flush = False # Change to True to flush all messages
+        if debug:
+            if debug is True: #is admin
+                if flush:
+                    lst = [{"message": "Messages flushed", "receiver_id": chat_id}]
+                else:
+                    lst = get_response(text, chat_id)
+                    lst = lst[0]
+                    lst[0]["receiver_id"] = chat_id # return response to tester
+            else:
+                lst = debug # send debugging message
+        else:
+            lst = get_response(text, chat_id) # not debugging
+        
         for dic in lst:
             chat_id = dic["receiver_id"]
             text = dic["message"]
             bot.sendMessage(chat_id=chat_id, text=text)
-        #bot.sendMessage(chat_id=chat_id, text="hello there")
         logger.info('Message sent')
-
+         
         return OK_RESPONSE
 
     return ERROR_RESPONSE
@@ -88,13 +107,16 @@ def get_response(text, chat_id):
     Process a message from Telegram
     """
 
+
+
+
     # Command Responses
     unregistered_message = \
         "You are not yet registered, please contact Love, USP for further details."
     already_registered_message = \
         "You are already registered!"
     to_register_message = \
-        "To register, please use the following format:\n/register <matric number> <password>"
+        "To register, please use the following format.\n/register <NUSNET ID> <password>\n/register E1234567 pAssw0rdH3r3"
     registration_success_message = \
         "Registration success! Your username is "
     registration_failed_message = \
@@ -138,8 +160,8 @@ def get_response(text, chat_id):
             return responses_list
 
         # if user is not registered
-        matric_number = text[10:19]
-        hash = text[20:]
+        matric_number = text[10:18]
+        hash = text[19:]
 
         # if password is wrong
         # use https://www.md5hashgenerator.com/
@@ -153,7 +175,7 @@ def get_response(text, chat_id):
         else:
             first_response["message"] = registration_failed_message
         return responses_list # COMPLETED AND WORKS
-    
+
     # if user is not registered, do NOT continue
     # check if user is already registered
     if not is_registered(chat_id):
@@ -165,26 +187,30 @@ def get_response(text, chat_id):
         return responses_list # COMPLETED AND WORKS
 
     if text[0:6] == "/leave":
-        matric_number = text[7:]
-        success = delete_user(matric_number)
+        success = leave(chat_id)
         if success:
             first_response["message"] = "You have left the chat."
         else:
-            first_response["message"] = "Command to leave failed. Remember to use /leave <matric number>"
+            first_response["message"] = "Command to leave failed."
         return responses_list # COMPLETED AND WORKS
 
     if text[:7] == "/delete":
-        matric_number = text[8:17]
-        password = text[18:]
-        if password != "IAMTHELOVEUSPADMIN":
-            first_response["message"] = delete_error_message
-            return responses_list
-        if delete_user(matric_number):
+        matric_number = text[8:16]
+        password = text[17:]
+        if delete_user(matric_number, password):
             first_response["message"] = delete_success_message
         else:
             first_response["message"] = delete_error_message
         return responses_list # COMPLETED AND WORKS
 
+    if text[:6] == "/allok":
+        password = text[7:]
+        allok = all_ok(password)
+        if allok == False:
+            first_response["message"] = wrong_password_message
+        else:
+            responses_list = allok
+        return responses_list
 
     if text[0] == "/":
         first_response["message"] = invalid_command_message
