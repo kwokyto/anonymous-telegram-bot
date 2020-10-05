@@ -17,6 +17,9 @@ Below are a list of available commands for users that can be used in the Telegra
 ### `/start`
 Returns a general welcome message.
 
+### `/about`
+Returns a bot description, along with the sign up link, FAQ link, and admins’ Telegram handles.
+
 ### `/register <NUSNET ID> <password>`
 Registers the student into the Anonymous system.
 After being registered, students can send and receive messages.
