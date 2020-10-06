@@ -60,7 +60,9 @@ The following outlines the procedure for debugging.
 
 
 ## FAQs
-1) ???
+The FAQ for the bot can be found [here](tinyurl.com/loveuspbotfaq "Love USP Bot FAQs")
+
+
 
 ## AWS and Serverless Deployment
 
@@ -97,3 +99,8 @@ $ curl -X POST https://<your_url>.amazonaws.com/dev/set_webhook
 8. From the AWS Console, select AWS DynamoDB.
 9. Under "Tables", ensure that the "AnonChatTable" table has been created.
 10. Re-register with `/register`, and registration should be successful.
+
+
+
+## Future Developments
+- Improved welcome message to assist the registration process and what to expect and do next
