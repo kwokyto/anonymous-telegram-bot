@@ -152,7 +152,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/anon-group-bot/dev/1601831650998-2020-10-04T17:14:10.998Z/anon-group-bot.zip"
+          "S3Key": "serverless/anon-group-bot/dev/1603776053063-2020-10-27T05:20:53.063Z/anon-group-bot.zip"
         },
         "FunctionName": "anon-group-bot-dev-webhook",
         "Handler": "handler.webhook",
@@ -175,14 +175,14 @@
         "WebhookLogGroup"
       ]
     },
-    "WebhookLambdaVersionielSMe3wmYyYzy4iBkVmqfnw3tItdsjrrAhmsA7tK20": {
+    "WebhookLambdaVersion65JPueMBNMhh8JE2e5V0JmaFGhXuUhW9XM3VKsOjyM": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "WebhookLambdaFunction"
         },
-        "CodeSha256": "uq7juc1FkHzKDU7RqzdVjTIzHKxclM+pe81XD3Fhvhs="
+        "CodeSha256": "UjZBKniQ/jpVwZcwjhABDoNeZtdrWgY7vQqryF6WXrY="
       }
     },
     "SetUnderscorewebhookLambdaFunction": {
@@ -192,7 +192,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/anon-group-bot/dev/1601831650998-2020-10-04T17:14:10.998Z/anon-group-bot.zip"
+          "S3Key": "serverless/anon-group-bot/dev/1603776053063-2020-10-27T05:20:53.063Z/anon-group-bot.zip"
         },
         "FunctionName": "anon-group-bot-dev-set_webhook",
         "Handler": "handler.set_webhook",
@@ -215,14 +215,14 @@
         "SetUnderscorewebhookLogGroup"
       ]
     },
-    "SetUnderscorewebhookLambdaVersion439GR06yO4ZEdrAXooDIZRlLnMwDuedm5U0FROZD0": {
+    "SetUnderscorewebhookLambdaVersionJV6pE7zCQQnJtBGzitvhmWclWgGrHLf5bgIDwqkyc": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "SetUnderscorewebhookLambdaFunction"
         },
-        "CodeSha256": "uq7juc1FkHzKDU7RqzdVjTIzHKxclM+pe81XD3Fhvhs="
+        "CodeSha256": "UjZBKniQ/jpVwZcwjhABDoNeZtdrWgY7vQqryF6WXrY="
       }
     },
     "ApiGatewayRestApi": {
@@ -341,7 +341,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1601831638785": {
+    "ApiGatewayDeployment1603776044494": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -438,13 +438,13 @@
     "WebhookLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "WebhookLambdaVersionielSMe3wmYyYzy4iBkVmqfnw3tItdsjrrAhmsA7tK20"
+        "Ref": "WebhookLambdaVersion65JPueMBNMhh8JE2e5V0JmaFGhXuUhW9XM3VKsOjyM"
       }
     },
     "SetUnderscorewebhookLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "SetUnderscorewebhookLambdaVersion439GR06yO4ZEdrAXooDIZRlLnMwDuedm5U0FROZD0"
+        "Ref": "SetUnderscorewebhookLambdaVersionJV6pE7zCQQnJtBGzitvhmWclWgGrHLf5bgIDwqkyc"
       }
     },
     "ServiceEndpoint": {
