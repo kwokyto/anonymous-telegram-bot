@@ -77,7 +77,10 @@ def webhook(event, context):
         for dic in lst:
             chat_id = dic["receiver_id"]
             text = dic["message"]
-            bot.sendMessage(chat_id=chat_id, text=text)
+            try:
+                bot.sendMessage(chat_id=chat_id, text=text)
+            except:
+                logger.info(chat_id + " has blocked the bot")
         logger.info('Message sent')
          
         return OK_RESPONSE

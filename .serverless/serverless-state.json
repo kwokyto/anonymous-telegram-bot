@@ -169,7 +169,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/anon-group-bot/dev/1603776053063-2020-10-27T05:20:53.063Z/anon-group-bot.zip"
+                "S3Key": "serverless/anon-group-bot/dev/1607051435117-2020-12-04T03:10:35.117Z/anon-group-bot.zip"
               },
               "FunctionName": "anon-group-bot-dev-webhook",
               "Handler": "handler.webhook",
@@ -192,14 +192,14 @@
               "WebhookLogGroup"
             ]
           },
-          "WebhookLambdaVersion65JPueMBNMhh8JE2e5V0JmaFGhXuUhW9XM3VKsOjyM": {
+          "WebhookLambdaVersionjxUi7hbry59L5ok0IAW3pVljCKaB3VK4opivApo4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "WebhookLambdaFunction"
               },
-              "CodeSha256": "UjZBKniQ/jpVwZcwjhABDoNeZtdrWgY7vQqryF6WXrY="
+              "CodeSha256": "x/mpGalg1UAy87fucpZoR39ei0Bd4Xr+wYy92MBqAV4="
             }
           },
           "SetUnderscorewebhookLambdaFunction": {
@@ -209,7 +209,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/anon-group-bot/dev/1603776053063-2020-10-27T05:20:53.063Z/anon-group-bot.zip"
+                "S3Key": "serverless/anon-group-bot/dev/1607051435117-2020-12-04T03:10:35.117Z/anon-group-bot.zip"
               },
               "FunctionName": "anon-group-bot-dev-set_webhook",
               "Handler": "handler.set_webhook",
@@ -232,14 +232,14 @@
               "SetUnderscorewebhookLogGroup"
             ]
           },
-          "SetUnderscorewebhookLambdaVersionJV6pE7zCQQnJtBGzitvhmWclWgGrHLf5bgIDwqkyc": {
+          "SetUnderscorewebhookLambdaVersiondBxlxaoIjSXjR4fNdDC3a74rh9xzhWUSmMsVmDZdWAo": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "SetUnderscorewebhookLambdaFunction"
               },
-              "CodeSha256": "UjZBKniQ/jpVwZcwjhABDoNeZtdrWgY7vQqryF6WXrY="
+              "CodeSha256": "x/mpGalg1UAy87fucpZoR39ei0Bd4Xr+wYy92MBqAV4="
             }
           },
           "ApiGatewayRestApi": {
@@ -358,7 +358,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1603776044494": {
+          "ApiGatewayDeployment1607051424788": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -455,13 +455,13 @@
           "WebhookLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "WebhookLambdaVersion65JPueMBNMhh8JE2e5V0JmaFGhXuUhW9XM3VKsOjyM"
+              "Ref": "WebhookLambdaVersionjxUi7hbry59L5ok0IAW3pVljCKaB3VK4opivApo4"
             }
           },
           "SetUnderscorewebhookLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "SetUnderscorewebhookLambdaVersionJV6pE7zCQQnJtBGzitvhmWclWgGrHLf5bgIDwqkyc"
+              "Ref": "SetUnderscorewebhookLambdaVersiondBxlxaoIjSXjR4fNdDC3a74rh9xzhWUSmMsVmDZdWAo"
             }
           },
           "ServiceEndpoint": {
@@ -576,7 +576,7 @@
         "timeout": 6,
         "runtime": "python3.6",
         "vpc": {},
-        "versionLogicalId": "WebhookLambdaVersion65JPueMBNMhh8JE2e5V0JmaFGhXuUhW9XM3VKsOjyM"
+        "versionLogicalId": "WebhookLambdaVersionjxUi7hbry59L5ok0IAW3pVljCKaB3VK4opivApo4"
       },
       "set_webhook": {
         "handler": "handler.set_webhook",
@@ -591,7 +591,7 @@
         "timeout": 6,
         "runtime": "python3.6",
         "vpc": {},
-        "versionLogicalId": "SetUnderscorewebhookLambdaVersionJV6pE7zCQQnJtBGzitvhmWclWgGrHLf5bgIDwqkyc"
+        "versionLogicalId": "SetUnderscorewebhookLambdaVersiondBxlxaoIjSXjR4fNdDC3a74rh9xzhWUSmMsVmDZdWAo"
       }
     },
     "configValidationMode": "warn",
@@ -618,7 +618,7 @@
     "artifact": "C:\\Users\\kwoky\\Documents\\GitHub\\anonymous-telegram-bot\\.serverless\\anon-group-bot.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/anon-group-bot/dev/1603776053063-2020-10-27T05:20:53.063Z",
+    "artifactDirectoryName": "serverless/anon-group-bot/dev/1607051435117-2020-12-04T03:10:35.117Z",
     "artifact": "anon-group-bot.zip"
   }
 }
