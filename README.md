@@ -1,6 +1,6 @@
 # Anonymous by Love, USP
 
-[anonymous logo](anonymous_profile_pic.jpg)
+![anonymous logo](anonymous_profile_pic.jpg)
 
 Anonymous was created to create a safe space for USP students to hold meaningful conversations about mental health.
 This simulates a group chat where students can share experience or advice, while remaining completely anonymous.
