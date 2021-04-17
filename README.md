@@ -6,6 +6,8 @@ Anonymous was created to create a safe space for USP students to hold meaningful
 This simulates a group chat where students can share experience or advice, while remaining completely anonymous.
 The telegram bot can be accessed [here](https://telegram.me/anongroupbetabot).
 
+:warning: This bot was disabled as of 17 April 2021. Contact @kwokyto on Telegram for any enquiries.
+
 ## Features
 
 When registered, any message that you sent to the bot will be sent to all other students that are also registered on the bot.
